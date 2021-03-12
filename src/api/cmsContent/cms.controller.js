@@ -17,36 +17,7 @@ const { stringify } = require("querystring");
 const { result } = require("lodash");
 
 
-const A = async (req, res, next) => {
-  try {
-    let data = { name: "data" };
-    console.log(data);
-    res.send(data);
-  } catch (error) {
-    //db end connection
-    endConnection();
-    console.error(chalk.red(error));
-    res.status(500);
-    next(error);
-  }
-};
 
-
-
-
-const sandboxtest = async (req, res, next) => {
-  try {
-    let data = { name: "sandbox" };
-    console.log(data);
-    res.send(data);
-  } catch (error) {
-    //db end connection
-    endConnection();
-    console.error(chalk.red(error));
-    res.status(500);
-    next(error);
-  }
-};
 
 const getFreedom = async (req, res, next) => {
   let body = req.body.value ? req.body.value : req.body;
@@ -101,44 +72,50 @@ console.log(error)
 
 
 
-const sendmail = (req,res,next) =>{
-var sender = nodemailer.createTransport(
-{
-  host: "0.0.0.0",
-  port: 25255,
-service:'gmail',
-auth:
-{
-user:'xx368528@gmail.com',
-pass:'maha@1999'
-}
-});
+// const sendmail = (req,res,next) =>{
+// var sender = nodemailer.createTransport(
+// {
+//   host: "0.0.0.0",
+//   port: 25255,
+// service:'gmail',
+// auth:
+// {
+// user:'xx368528@gmail.com',
+// pass:'maha@1999'
+// }
+// });
 
-var composemail ={
-from:'xx368528@gmail.com',
-to:'mahalakshmid50@gmail.com',
-subject:'maha',
-text:'hi'
-};
-html: '<h1>Attachments</h1>',
-  attachments
-    {  
-        filename: 'Report.pdf'
-    }
+// var composemail ={
+// from:'xx368528@gmail.com',
+// to:'xyz@gmail.com',
+// subject:'maha',
+// text:'hi'
+// };
+// html: '<h1>Attachments</h1>',
+//   attachments
+//     {  
+//         filename: 'Report.pdf'
+//     }
   
 
-sender.sendMail(composemail,function(error,info){
-if(error)
-{
-console.log(error);
-}
-else{
-console.log("mail sent successsfully"+info.response);
-}
-});
-  res.send("Success")
-};
+// sender.sendMail(composemail,function(error,info){
+// if(error)
+// {
+// console.log(error);
+// }
+// else{
+// console.log("mail sent successsfully"+info.response);
+// }
+// });
+//   res.send("Success")
+// };
+
+
+
 module.exports = {
-  A,sandboxtest,
-  getFreedom,addMaster,sendmail
+  
+  sandboxtest,
+  getFreedom,
+  addMaster,
+  // sendmail
 };

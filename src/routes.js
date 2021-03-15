@@ -6,7 +6,9 @@ const router = Router();
 
 router.get('/', (req, res) => {
   res.statusCode = 302;
+
   res.setHeader('Location', 'google.com');
+  res.send("HELLO")
   res.end();
 });
 

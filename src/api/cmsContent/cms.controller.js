@@ -63,13 +63,17 @@ const addMaster = (req,res,next) =>{
 try{
   let tablename = req.params.tablename;
   let body = req.body;
-  console.log(body)
-  res.send("body")
-}catch(error){
-console.log(error)
-}
-}
-
+  let result= CmsContent.addMaster(tablename,body)
+ endConnection();
+    res.send(result);
+}catch (error) {
+    //db end connection
+    endConnection();
+    console.error(chalk.red(error));
+    res.status(500);
+    next(error);
+  }
+};
 
 
 // const sendmail = (req,res,next) =>{
@@ -114,7 +118,7 @@ console.log(error)
 
 module.exports = {
   
-  sandboxtest,
+  // sandboxtest,
   getFreedom,
   addMaster,
   // sendmail
